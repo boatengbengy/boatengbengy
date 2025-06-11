@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Benjamin Boateng - UI/UX Designer</title>
+    <!-- Favicon Links -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="images" sizes="16x16" href="/favicon-16x16.png" />
+    <link
+      rel="icon"
+      type="images/png"
+      sizes="32x32"
+      href="/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="images/png"
+      sizes="48x48"
+      href="/favicon-48x48.png"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset and Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        line-height: 1.6;
+        color: #e2e8f0;
+        background-color: #0f172a;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Navigation */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #6366f1;
+        text-decoration: none;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        margin-left: auto;
+      }
+
+      .nav-link {
+        text-decoration: none;
+        color: #94a3b8;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        position: relative;
+        padding: 10px 15px;
+        border-radius: 8px;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+
+      .nav-link.active::after {
+        content: "";
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 2px;
+        background: #6366f1;
+        border-radius: 1px;
+      }
+
+      /* Mobile menu hamburger - hidden on desktop */
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-menu:hover {
+        background: rgba(99, 102, 241, 0.1);
+      }
+
+      .mobile-menu span {
+        width: 25px;
+        height: 3px;
+        background: #e2e8f0;
+        margin: 3px 0;
+        transition: 0.3s;
+        border-radius: 2px;
+      }
+
+      /* Hamburger animation when active */
+      .mobile-menu.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+
+      .mobile-menu.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-menu.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="80" r="2.5" fill="rgba(255,255,255,0.1)"/></svg>');
+        animation: float 20s infinite linear;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        animation: fadeInUp 1s ease;
+      }
+
+      @keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, #fff, #e2e8f0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero .subtitle {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        margin-bottom: 0.5rem;
+        opacity: 0.9;
+      }
+
+      .hero .tagline {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        opacity: 0.8;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 15px 30px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .cta-button:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Section Styles */
+      .section {
+        padding: 100px 0;
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: #f1f5f9;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: #6366f1;
+        border-radius: 2px;
+      }
+
+      /* About Section */
+      .about {
+        background: #1e293b;
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        align-items: start;
+      }
+
+      .about-text {
+        font-size: 1.1rem;
+        color: #94a3b8;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+      }
+
+      .design-process {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+      }
+
+      .process-item {
+        background: #f8fafc;
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 1px solid #e2e8f0;
+      }
+
+      .process-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: #6366f1;
+      }
+
+      .process-item .icon {
+        width: 60px;
+        height: 60px;
+        background: #6366f1;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 1.5rem;
+        color: white;
+      }
+
+      .process-item h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: #1e293b;
+      }
+
+      .process-item p {
+        color: #64748b;
+        font-size: 0.95rem;
+      }
+
+      /* Portfolio Section */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        font-size: 3rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 60px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .project-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        border-color: rgba(102, 126, 234, 0.5);
+      }
+
+      .project-image {
+        height: 250px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .project-image:hover {
+        transform: scale(1.05);
+      }
+
+      .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .project-image:hover img {
+        transform: scale(1.1);
+      }
+
+      .project-image::after {
+        content: "🔍";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background: rgba(0, 0, 0, 0.7);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .project-image:hover::after {
+        opacity: 1;
+      }
+
+      .project-content {
+        padding: 25px;
+      }
+
+      .project-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: #fff;
+      }
+
+      .project-description {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+
+      .project-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 25px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .project-button:hover::before {
+        left: 100%;
+      }
+
+      .project-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      /* Lightbox Styles */
+      .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .lightbox.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+        animation: lightboxZoom 0.3s ease;
+      }
+
+      .lightbox-image {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .lightbox-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: rotate(90deg);
+      }
+
+      .lightbox-info {
+        position: absolute;
+        bottom: -60px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        color: white;
+      }
+
+      .lightbox-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .lightbox-description {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+      }
+
+      @keyframes lightboxZoom {
+        from {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Navigation arrows */
+      .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .lightbox-nav:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .lightbox-prev {
+        left: 20px;
+      }
+
+      .lightbox-next {
+        right: 20px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .lightbox-content {
+          max-width: 95%;
+          max-height: 80%;
+        }
+
+        .lightbox-nav {
+          width: 40px;
+          height: 40px;
+          font-size: 1.5rem;
+        }
+
+        .lightbox-close {
+          top: -30px;
+          font-size: 1.5rem;
+        }
+      }
+
+      /* Mockup Styles for Demo */
+      .mockup-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .healthcare-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .ecommerce-bg {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+      .lms-bg {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      }
+      .car-bg {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      }
+      .restaurant-bg {
+        background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      }
+      .finance-bg {
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+      }
+
+      /* Contact Section */
+      .contact {
+        background: #1e293b;
+      }
+
+      .contact-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .contact-info h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #f1f5f9;
+      }
+
+      .contact-info p {
+        color: #94a3b8;
+        margin-bottom: 2rem;
+        line-height: 1.7;
+        font-size: 1.1rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      .contact-item .icon {
+        width: 50px;
+        height: 50px;
+        background: #6366f1;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        color: white;
+        font-size: 1.2rem;
+      }
+
+      .contact-item .email-text {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .contact-item a {
+        color: #6366f1;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+
+      .contact-item a:hover {
+        color: #8b5cf6;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        justify-content: center;
+      }
+
+      .social-link {
+        width: 60px;
+        height: 60px;
+        background: #334155;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #6366f1;
+        transition: all 0.3s ease;
+        border: 2px solid #475569;
+        font-size: 1.5rem;
+      }
+
+      .social-link:hover {
+        background: #6366f1;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+      }
+
+      /* Contact Form - Remove all form styles */
+
+      /* Footer */
+      .footer {
+        background: #0f172a;
+        color: #94a3b8;
+        text-align: center;
+        padding: 2rem 0;
+        border-top: 1px solid #334155;
+      }
+
+      .footer p {
+        opacity: 0.8;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        /* Hide desktop menu and show hamburger on mobile */
+        .nav-menu {
+          position: fixed;
+          left: -100%;
+          top: 70px;
+          flex-direction: column;
+          background-color: rgba(15, 23, 42, 0.98);
+          backdrop-filter: blur(10px);
+          width: 100%;
+          text-align: center;
+          transition: left 0.3s ease;
+          box-shadow: 0 10px 27px rgba(0, 0, 0, 0.3);
+          padding: 2rem 0;
+          gap: 0;
+          border-top: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .nav-menu.active {
+          left: 0;
+        }
+
+        .nav-menu li {
+          margin: 0.5rem 0;
+        }
+
+        .nav-link {
+          display: block;
+          padding: 15px 20px;
+          margin: 0 20px;
+          border-radius: 10px;
+          font-size: 1.1rem;
+        }
+
+        .nav-link.active::after {
+          display: none;
+        }
+
+        .nav-link.active {
+          background: rgba(99, 102, 241, 0.15);
+          color: #6366f1;
+          font-weight: 600;
+        }
+
+        /* Show hamburger menu on mobile */
+        .mobile-menu {
+          display: flex;
+        }
+
+        .about-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .contact-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .design-process {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding: 0 20px;
+        }
+
+        .section {
+          padding: 60px 0;
+        }
+      }
+
+      /* Additional mobile styles for smaller screens */
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 15px;
+        }
+
+        .nav-menu {
+          top: 65px;
+          padding: 1.5rem 0;
+        }
+
+        .nav-link {
+          font-size: 1rem;
+          padding: 12px 15px;
+          margin: 0 15px;
+        }
+
+        .logo {
+          font-size: 1.3rem;
+        }
+
+        .mobile-menu span {
+          width: 22px;
+          height: 2.5px;
+        }
+
+        .project-card {
+          margin: 0 10px;
+        }
+
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+      }
+
+      /* Scroll animations */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.appear {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-container">
+          <a href="#home" class="logo">Benjamin</a>
+          <ul class="nav-menu">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+          <div class="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Benjamin Boateng</h1>
+          <p class="subtitle">UI/UX Designer</p>
+          <p class="tagline">
+            Designing intuitive and meaningful digital experiences
+          </p>
+          <a href="#about" class="cta-button">Discover My Work</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+      <div class="container">
+        <h2 class="section-title fade-in">About Me</h2>
+        <div class="about-content">
+          <div class="fade-in">
+            <p class="about-text">
+              Hello there!, I'm a passionate Creative designer who specialize in
+              UX/UI design, frontend and Mobile app UI development. With a
+              background in both design and code, I bridge the gap between user
+              needs and technical implementation, turning ideas into seamless,
+              engaging interfaces.
+            </p>
+            <p class="about-text">
+              With expertise in the complete design process, I believe that
+              great design starts with understanding users' needs and ends with
+              solutions that make their lives easier and more enjoyable.
+            </p>
+          </div>
+          <div class="design-process fade-in">
+            <div class="process-item">
+              <div class="icon">🔍</div>
+              <h3>User Research</h3>
+              <p>
+                Understanding user needs through interviews, surveys, and
+                behavioral analysis
+              </p>
+            </div>
+            <div class="process-item">
+              <div class="icon">📐</div>
+              <h3>Wireframing</h3>
+              <p>
+                Creating structural blueprints that define content hierarchy and
+                user flow
+              </p>
+            </div>
+            <div class="process-item">
+              <div class="icon">🎨</div>
+              <h3>Prototyping</h3>
+              <p>
+                Building interactive models to test concepts and validate design
+                decisions
+              </p>
+            </div>
+            <div class="process-item">
+              <div class="icon">🧪</div>
+              <h3>Usability Testing</h3>
+              <p>
+                Gathering feedback through user testing to identify pain points
+                and opportunities
+              </p>
+            </div>
+            <div class="process-item">
+              <div class="icon">🔄</div>
+              <h3>Iterative Design</h3>
+              <p>
+                Continuously refining designs based on user feedback and data
+                insights
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section portfolio">
+      <div class="container">
+        <h2 class="section-title">My Portfolio</h2>
+        <div class="portfolio-grid">
+          <!-- FinanceFlow Mobile App -->
+          <div class="project-card">
+            <div class="project-image" onclick="openLightbox(0)">
+              <div class="mockup-placeholder finance-bg">💰</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">FinanceFlow Mobile App</h3>
+              <p class="project-description">
+                A comprehensive personal finance management app with intuitive
+                budgeting tools and expense tracking features.
+              </p>
+              <a href="#" class="project-button">View Case Study</a>
+            </div>
+          </div>
+
+          <!-- Healthcare Dashboard -->
+          <div class="project-card">
+            <div class="project-image" onclick="openLightbox(1)">
+              <div class="mockup-placeholder healthcare-bg">🏥</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">HealthCare Dashboard</h3>
+              <p class="project-description">
+                A medical dashboard for healthcare professionals to monitor
+                patient data and streamline clinical workflows.
+              </p>
+              <a href="#" class="project-button">View Case Study</a>
+            </div>
+          </div>
+
+          <!-- E-Commerce Platform -->
+          <div class="project-card">
+            <div class="project-image" onclick="openLightbox(2)">
+              <div class="mockup-placeholder ecommerce-bg">🛒</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">E-Commerce Platform</h3>
+              <p class="project-description">
+                A modern e-commerce website redesign focused on improving
+                conversion rates and user experience.
+              </p>
+              <a href="#" class="project-button">View Case Study</a>
+            </div>
+          </div>
+
+          <!-- Learning Management System -->
+          <div class="project-card">
+            <div class="project-image" onclick="openLightbox(3)">
+              <div class="mockup-placeholder lms-bg">📚</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Learning Management System</h3>
+              <p class="project-description">
+                An educational platform that makes online learning engaging and
+                accessible for students of all ages.
+              </p>
+              <a href="#" class="project-button">View Case Study</a>
+            </div>
+          </div>
+
+          <!-- Car Rental App -->
+          <div class="project-card">
+            <div class="project-image" onclick="openLightbox(4)">
+              <div class="mockup-placeholder car-bg">🚗</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Car Rental App</h3>
+              <p class="project-description">
+                A mobile application that simplifies car rental booking with
+                location-based services and seamless payment integration.
+              </p>
+              <a href="#" class="project-button">View Case Study</a>
+            </div>
+          </div>
+
+          <!-- Restaurant Ordering System -->
+          <div class="project-card">
+            <div class="project-image" onclick="openLightbox(5)">
+              <div class="mockup-placeholder restaurant-bg">🍽️</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Restaurant Ordering System</h3>
+              <p class="project-description">
+                A digital ordering platform that enhances the dining experience
+                with customizable menus and real-time order tracking.
+              </p>
+              <a href="#" class="project-button">View Case Study</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-content">
+        <button class="lightbox-close" onclick="closeLightbox()">
+          &times;
+        </button>
+        <img class="lightbox-image" id="lightboxImage" src="" alt="" />
+        <div class="lightbox-info">
+          <div class="lightbox-title" id="lightboxTitle"></div>
+          <div class="lightbox-description" id="lightboxDescription"></div>
+        </div>
+      </div>
+      <button class="lightbox-nav lightbox-prev" onclick="previousImage()">
+        &larr;
+      </button>
+      <button class="lightbox-nav lightbox-next" onclick="nextImage()">
+        &rarr;
+      </button>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+      <div class="container">
+        <h2 class="section-title fade-in">Get In Touch</h2>
+        <div class="contact-content">
+          <div class="contact-info fade-in">
+            <h3>Let's Work Together</h3>
+            <p>
+              I'm always excited to take on new challenges and collaborate on
+              projects that make a difference. Whether you have a specific
+              project in mind or just want to chat about design, I'd love to
+              hear from you.
+            </p>
+
+            <div class="contact-item">
+              <div class="icon">✉️</div>
+              <div>
+                <strong>Email</strong><br />
+                <a
+                  href="mailto:boatengbengy@gmail.com"
+                  style="color: #6366f1; text-decoration: none"
+                  >boatengbengy@gmail.com</a
+                >
+              </div>
+            </div>
+
+            <div class="social-links">
+              <!-- <a href="https://www.facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+                         <a href="https://www.instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                         <a href="https://www.linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                         <a href="https://www.twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 Benjamin Boateng. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Menu Toggle with animation
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const navMenu = document.querySelector(".nav-menu");
+
+      mobileMenu.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        mobileMenu.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          navMenu.classList.remove("active");
+          mobileMenu.classList.remove("active");
+        });
+      });
+
+      // Smooth scrolling and active navigation
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      function updateActiveNav() {
+        const scrollPosition = window.scrollY + 100;
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const sectionId = section.getAttribute("id");
+
+          if (
+            scrollPosition >= sectionTop &&
+            scrollPosition < sectionTop + sectionHeight
+          ) {
+            navLinks.forEach((link) => {
+              link.classList.remove("active");
+              if (link.getAttribute("href") === `#${sectionId}`) {
+                link.classList.add("active");
+              }
+            });
+          }
+        });
+      }
+
+      // Scroll animations
+      function checkAnimation() {
+        const fadeElements = document.querySelectorAll(".fade-in");
+
+        fadeElements.forEach((element) => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+
+          if (elementTop < window.innerHeight - elementVisible) {
+            element.classList.add("appear");
+          }
+        });
+      }
+
+      // Event listeners for scroll
+      window.addEventListener("scroll", () => {
+        updateActiveNav();
+        checkAnimation();
+      });
+
+      // Initial check for animations
+      checkAnimation();
+
+      // Parallax effect for hero section
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector(".hero");
+        const heroContent = document.querySelector(".hero-content");
+
+        if (hero && heroContent) {
+          heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+      });
+
+      // Add loading animation for project cards
+      const projectCards = document.querySelectorAll(".project-card");
+      projectCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+      });
+
+      // Smooth hover effects for navigation
+      navLinks.forEach((link) => {
+        link.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-2px)";
+        });
+
+        link.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0)";
+        });
+      });
+
+      // Add intersection observer for better performance
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("appear");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all fade-in elements
+      document.querySelectorAll(".fade-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Add typing effect for hero tagline
+      function typeWriter(element, text, speed = 50) {
+        let i = 0;
+        element.innerHTML = "";
+
+        function type() {
+          if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+          }
+        }
+        type();
+      }
+
+      // Initialize typing effect after page load
+      window.addEventListener("load", () => {
+        const tagline = document.querySelector(".hero .tagline");
+        const originalText = tagline.textContent;
+        setTimeout(() => {
+          typeWriter(tagline, originalText, 30);
+        }, 1000);
+      });
+
+      // Add scroll-to-top functionality
+      let scrollTimeout;
+      window.addEventListener("scroll", () => {
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        // Show scroll indicator
+        if (scrollTop > 300) {
+          document.body.classList.add("scrolled");
+        } else {
+          document.body.classList.remove("scrolled");
+        }
+
+        // Clear timeout if it exists
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+
+        // Set new timeout
+        scrollTimeout = setTimeout(() => {
+          // Additional scroll-end functionality can be added here
+        }, 150);
+      });
+
+      // Add keyboard navigation support
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          navMenu.classList.remove("active");
+        }
+      });
+
+      // Add focus management for accessibility
+      const focusableElements =
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+      function trapFocus(element) {
+        const focusable = element.querySelectorAll(focusableElements);
+        const firstFocusable = focusable[0];
+        const lastFocusable = focusable[focusable.length - 1];
+
+        element.addEventListener("keydown", (e) => {
+          if (e.key === "Tab") {
+            if (e.shiftKey) {
+              if (document.activeElement === firstFocusable) {
+                lastFocusable.focus();
+                e.preventDefault();
+              }
+            } else {
+              if (document.activeElement === lastFocusable) {
+                firstFocusable.focus();
+                e.preventDefault();
+              }
+            }
+          }
+        });
+      }
+
+      // Apply focus trap to mobile menu when active
+      const navMenuElement = document.querySelector(".nav-menu");
+      if (navMenuElement) {
+        trapFocus(navMenuElement);
+      }
+
+      // Add performance optimization for scroll events
+      let ticking = false;
+
+      function updateOnScroll() {
+        updateActiveNav();
+        ticking = false;
+      }
+
+      function requestUpdateOnScroll() {
+        if (!ticking) {
+          requestAnimationFrame(updateOnScroll);
+          ticking = true;
+        }
+      }
+
+      window.addEventListener("scroll", requestUpdateOnScroll);
+
+      // Add click outside to close mobile menu
+      document.addEventListener("click", (e) => {
+        if (!navMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
+          navMenu.classList.remove("active");
+        }
+      });
+
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("Benjamin Boateng Portfolio - Loaded Successfully! 🎨");
+
+        // Add initial animations
+        setTimeout(() => {
+          document.body.classList.add("loaded");
+        }, 100);
+      });
+      // Portfolio data
+      const portfolioData = [
+        {
+          title: "FinanceFlow Mobile App",
+          description:
+            "A comprehensive personal finance management app with intuitive budgeting tools and expense tracking features.",
+          image:
+            "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJmaW5hbmNlIiB4MT0iMCIgeTE9IjAiIHgyPSI0MDAiIHkyPSIzMDAiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNhOGVkZWEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZWQ2ZTMiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0idXJsKCNmaW5hbmNlKSIvPjx0ZXh0IHg9IjIwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0iY2VudHJhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0id2hpdGUiPvCfkrA8L3RleHQ+PC9zdmc+",
+        },
+        {
+          title: "HealthCare Dashboard",
+          description:
+            "A medical dashboard for healthcare professionals to monitor patient data and streamline clinical workflows.",
+          image:
+            "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJoZWFsdGgiIHgxPSIwIiB5MT0iMCIgeDI9IjQwMCIgeTI9IjMwMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY2N2VlYSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzc2NGJhMiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSJ1cmwoI2hlYWx0aCkiLz48dGV4dCB4PSIyMDAiIHk9IjE1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IndoaXRlIj7wn4+lPC90ZXh0Pjwvc3ZnPg==",
+        },
+        {
+          title: "E-Commerce Platform",
+          description:
+            "A modern e-commerce website redesign focused on improving conversion rates and user experience.",
+          image:
+            "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJlY29tIiB4MT0iMCIgeTE9IjAiIHgyPSI0MDAiIHkyPSIzMDAiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmMDkzZmIiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNTU3NmMiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0idXJsKCNlY29tKSIvPjx0ZXh0IHg9IjIwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0iY2VudHJhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0id2hpdGUiPvCfm5I8L3RleHQ+PC9zdmc+",
+        },
+        {
+          title: "Learning Management System",
+          description:
+            "An educational platform that makes online learning engaging and accessible for students of all ages.",
+          image:
+            "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJsbXMiIHgxPSIwIiB5MT0iMCIgeDI9IjQwMCIgeTI9IjMwMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzRmYWNmZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwZjJmZSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSJ1cmwoI2xtcykiLz48dGV4dCB4PSIyMDAiIHk9IjE1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IndoaXRlIj7wn5OSPC90ZXh0Pjwvc3ZnPg==",
+        },
+        {
+          title: "Car Rental App",
+          description:
+            "A mobile application that simplifies car rental booking with location-based services and seamless payment integration.",
+          image:
+            "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjYXIiIHgxPSIwIiB5MT0iMCIgeDI9IjQwMCIgeTI9IjMwMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZhNzA5YSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZlZTE0MCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSJ1cmwoI2NhcikiLz48dGV4dCB4PSIyMDAiIHk9IjE1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IndoaXRlIj7wn5qXPC90ZXh0Pjwvc3ZnPg==",
+        },
+        {
+          title: "Restaurant Ordering System",
+          description:
+            "A digital ordering platform that enhances the dining experience with customizable menus and real-time order tracking.",
+          image:
+            "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJyZXN0IiB4MT0iMCIgeTE9IjAiIHgyPSI0MDAiIHkyPSIzMDAiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZmVjZDIiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmY2I2OWYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0idXJsKCNyZXN0KSIvPjx0ZXh0IHg9IjIwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0iY2VudHJhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0id2hpdGUiPvCfjb3vuI88L3RleHQ+PC9zdmc+",
+        },
+      ];
+
+      let currentImageIndex = 0;
+
+      function openLightbox(index) {
+        currentImageIndex = index;
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImage = document.getElementById("lightboxImage");
+        const lightboxTitle = document.getElementById("lightboxTitle");
+        const lightboxDescription = document.getElementById(
+          "lightboxDescription"
+        );
+
+        const project = portfolioData[index];
+        lightboxImage.src = project.image;
+        lightboxTitle.textContent = project.title;
+        lightboxDescription.textContent = project.description;
+
+        lightbox.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        const lightbox = document.getElementById("lightbox");
+        lightbox.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % portfolioData.length;
+        updateLightboxContent();
+      }
+
+      function previousImage() {
+        currentImageIndex =
+          (currentImageIndex - 1 + portfolioData.length) % portfolioData.length;
+        updateLightboxContent();
+      }
+
+      function updateLightboxContent() {
+        const lightboxImage = document.getElementById("lightboxImage");
+        const lightboxTitle = document.getElementById("lightboxTitle");
+        const lightboxDescription = document.getElementById(
+          "lightboxDescription"
+        );
+
+        const project = portfolioData[currentImageIndex];
+        lightboxImage.src = project.image;
+        lightboxTitle.textContent = project.title;
+        lightboxDescription.textContent = project.description;
+      }
+
+      // Keyboard navigation
+      document.addEventListener("keydown", function (e) {
+        const lightbox = document.getElementById("lightbox");
+        if (lightbox.classList.contains("active")) {
+          if (e.key === "Escape") {
+            closeLightbox();
+          } else if (e.key === "ArrowRight") {
+            nextImage();
+          } else if (e.key === "ArrowLeft") {
+            previousImage();
+          }
+        }
+      });
+
+      // Close lightbox when clicking outside the image
+      document
+        .getElementById("lightbox")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeLightbox();
+          }
+        });
+    </script>
+  </body>
+</html>
